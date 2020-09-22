@@ -1,0 +1,47 @@
+
+[version]
+signature="$CHICAGO$"
+
+[RegClickInstall]
+CopyFiles = RegClick.Files.Inf
+AddReg    = RegClick.Reg
+
+[DefaultInstall]
+CopyFiles = RegClick.Files.Inf
+AddReg    = RegClick.Reg
+
+[DefaultUnInstall]
+DelFiles  = RegClick.Files.Inf
+DelReg    = RegClick.Reg
+
+[SourceDisksNames]
+55="Register Object","",1
+
+[SourceDisksFiles]
+RegClick.INF=55
+
+[DestinationDirs]
+RegClick.Files.Inf = 17
+
+[RegClick.Files.Inf]
+RegClick.INF
+
+[RegClick.Reg]
+HKLM,Software\Microsoft\Windows\CurrentVersion\Uninstall\RegClick,DisplayName,,"Right-Click regsvr32"
+HKLM,Software\Microsoft\Windows\CurrentVersion\Uninstall\RegClick,UninstallString,,"rundll32.exe syssetup.dll,SetupInfObjectInstallAction DefaultUninstall 132 %17%\RegClick.inf"
+HKCR,dllfile\Shell\"%RegDllClickName%",,,"%RegDllClickName%"
+HKCR,dllfile\Shell\"%RegDllClickName%"\command,,,"regsvr32.exe ""%1"""
+HKCR,dllfile\Shell\"%UnRegDllClickName%",,,"%UnRegDllClickName%"
+HKCR,dllfile\Shell\"%UnRegDllClickName%"\command,,,"regsvr32.exe ""%1"" -U"
+HKCR,ocxfile\Shell\"%RegOcxClickName%",,,"%RegOcxClickName%"
+HKCR,ocxfile\Shell\"%RegOcxClickName%"\command,,,"regsvr32.exe ""%1"""
+HKCR,ocxfile\Shell\"%UnRegOcxClickName%",,,"%UnRegOcxClickName%"
+HKCR,ocxfile\Shell\"%UnRegOcxClickName%"\command,,,"regsvr32.exe ""%1"" -U"
+
+
+[Strings]
+RegDllClickName="Register Dll"
+UnRegDllClickName="Unregister Dll"
+RegOcxClickName="Register OCX"
+UnRegOcxClickName="Unregister OCX"
+
